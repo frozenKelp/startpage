@@ -1,6 +1,6 @@
 (() => {
   // === Slideshow Setup ===
-  const totalVideos = 21;
+  const totalVideos = 16;
   const slideshow = document.getElementById('slideshow');
   const videos = Array.from({ length: totalVideos }, (_, i) => `assets/Side${i + 1}.mp4`);
 

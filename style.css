@@ -110,6 +110,12 @@ ul.yellow:hover { color: #edd934; }
   object-fit: cover;
 }
 
+#slideshow video {
+  width: 100%;
+  height: 600px;
+  object-fit: cover; /* Ensures the video fills the container without distortion */
+}
+
 #codes {
   position: absolute;
   bottom: 0;

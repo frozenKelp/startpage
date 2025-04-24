@@ -1,8 +1,8 @@
 (() => {
   // === Slideshow Setup ===
   const imagePath = 'assets/';
-  const totalImages = 23;
-  const images = Array.from({ length: totalImages }, (_, i) => `side${i + 1}.gif`);
+  const totalVideos = 23;
+  const videos = Array.from({ length: totalVideos }, (_, i) => `side${i + 1}.mp4`);
 
   const getSeed = () => {
     const now = new Date();
@@ -11,7 +11,7 @@
 
   const seededRandom = (seed) => Math.abs(Math.sin(seed) * 10000) % 1;
 
-  const getDailyDefaultSlideIndex = () => Math.floor(seededRandom(getSeed()) * totalImages) + 1;
+  const getDailyDefaultSlideIndex = () => Math.floor(seededRandom(getSeed()) * totalVideos) + 1;
 
   let slideIndex = parseInt(localStorage.getItem('slideIndex')) || getDailyDefaultSlideIndex();
   const lastAccessedDate = localStorage.getItem('lastAccessedDate');
@@ -25,15 +25,18 @@
 
   const slideshow = document.getElementById('slideshow');
   const frag = document.createDocumentFragment();
-  images.forEach((image) => {
+  videos.forEach((video) => {
     const slideDiv = document.createElement('div');
     slideDiv.classList.add('mySlides');
-    const img = document.createElement('img');
-    img.src = imagePath + image;
-    img.style.cursor = "pointer";
-    img.loading = "lazy"; // Lazy load images
-    img.addEventListener('click', () => changeSlide(1));
-    slideDiv.appendChild(img);
+    const vid = document.createElement('video');
+    vid.src = imagePath + video;
+    vid.style.cursor = "pointer";
+    vid.autoplay = true;
+    vid.loop = true;
+    vid.muted = true;
+    vid.playsInline = true; // Ensures compatibility with mobile browsers
+    vid.addEventListener('click', () => changeSlide(1));
+    slideDiv.appendChild(vid);
     frag.appendChild(slideDiv);
   });
   slideshow.appendChild(frag);

@@ -2,7 +2,7 @@
   // === Slideshow Setup ===
   const totalVideos = 21;
   const slideshow = document.getElementById('slideshow');
-  const videos = Array.from({ length: totalVideos }, (_, i) => `assets/side${i + 1}.mp4`);
+  const videos = Array.from({ length: totalVideos }, (_, i) => `assets/Side${i + 1}.mp4`);
 
   const getDailySlideIndex = () => {
     const seed = new Date().toDateString();

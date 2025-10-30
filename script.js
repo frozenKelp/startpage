@@ -1,89 +1,49 @@
 (() => {
   // === Slideshow Setup ===
-  const totalVideos = 16;
-  const slideshow = document.getElementById('slideshow');
-  const videos = Array.from({ length: totalVideos }, (_, i) => `assets/Side${i + 1}.mp4`);
+const total = 16;
+let index = 0; // set manually to your preferred starting video (0–15)
+let front = document.getElementById('vid_F');
+let back  = document.getElementById('vid_B');
 
-  const getDailySlideIndex = () => {
-    const seed = new Date().toDateString();
-    return [...seed].reduce((acc, char) => acc + char.charCodeAt(0), 0) % totalVideos;
-  };
+front.src = `assets/Side${index + 1}.mp4`;
+front.load();
+front.play();
 
-  const currentDate = new Date().toDateString();
-  let slideIndex = localStorage.getItem('lastDate') === currentDate
-    ? parseInt(localStorage.getItem('slideIndex'), 10)
-    : getDailySlideIndex();
+function swap() {
+  index = (index + 1) % total; // or replace with any logic you prefer
+  back.src = `assets/Side${index + 1}.mp4`;
+  back.load();
+  back.play();
 
-  localStorage.setItem('lastDate', currentDate);
-  localStorage.setItem('slideIndex', slideIndex);
+  back.className = 'front';
+  front.className = 'back';
+  [front, back] = [back, front];
+}
 
-  videos.forEach((video, i) => {
-    const slide = document.createElement('div');
-    slide.className = 'mySlides';
-    slide.style.opacity = i === slideIndex ? '1' : '0';
-    slide.style.transition = 'opacity 0.5s'; // Smooth fade
+front.addEventListener('click', swap);
+back.addEventListener('click', swap);
 
-    const vid = document.createElement('video');
-    vid.dataset.src = video; // Use data-src for lazy loading
-    vid.autoplay = false;
-    vid.loop = true;
-    vid.muted = true;
-    vid.playsInline = true;
-    vid.style.cursor = 'pointer';
-    vid.preload = 'none';
-    vid.addEventListener('click', () => changeSlide(1));
-
-    slide.appendChild(vid);
-    slideshow.appendChild(slide);
-  });
-
-  // Helper to load/play only the current video
-  const loadCurrentVideo = () => {
-    document.querySelectorAll('.mySlides').forEach((slide, i) => {
-      const vid = slide.querySelector('video');
-      if (i === slideIndex) {
-        if (!vid.src) vid.src = vid.dataset.src;
-        vid.load();
-        vid.play();
-      } else {
-        vid.pause();
-        vid.removeAttribute('src');
-        vid.load();
-      }
-    });
-  };
-
-  const changeSlide = (n) => {
-    slideIndex = (slideIndex + n + totalVideos) % totalVideos;
-    updateSlides();
-    loadCurrentVideo();
-  };
-
-  const updateSlides = () => {
-    document.querySelectorAll('.mySlides').forEach((slide, i) => {
-      slide.style.opacity = i === slideIndex ? '1' : '0';
-    });
-    localStorage.setItem('slideIndex', slideIndex);
-  };
-
-  updateSlides();
-  loadCurrentVideo();
 
   // === Clock Update ===
-  const updateClock = () => {
-    document.getElementById('codes').textContent = new Date().toLocaleString('en-GB', {
-      weekday: 'long',
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    });
-  };
+function updateClock() {
+  const now = new Date();
+  const time = now.toLocaleTimeString('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false
+  });
+  const date = now.toLocaleDateString('en-GB', {
+    weekday: 'long',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  });
+  document.getElementById('codes').textContent = `${time}  |  ${date}`;
+}
 
-  updateClock();
-  setInterval(updateClock, 1000);
+updateClock();
+setInterval(updateClock, 1000);
 
   // === Canvas Background Animation ===
   const canvas = document.getElementById('canvas');

@@ -13,8 +13,8 @@ body {
 
 .container {
   position:absolute;
-  top:50%;
-  left:50%;
+  top:50dvh;
+  left:50dvw;
   transform: translate(-50%, -50%);
   aspect-ratio: 16 / 9;
 }

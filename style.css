@@ -53,8 +53,6 @@ body {
   "f f f f f f f f f f f f v v v v";
 }
 
-
-
 h1 {
   grid-area: t;
   text-align: center;
@@ -107,15 +105,10 @@ a {
   transition: color 0.3s;}
 .coulmn a:hover {
   color: white;}
-
 #blue:hover .nav-title { color: #0972D6; }
 #red:hover .nav-title { color: #ed3434; }
 #green:hover .nav-title { color: #4FAE0F; }
 #yellow:hover .nav-title { color: #edd934; }
-
-
-
-
 
 #slideshow {
   grid-area: v ;
@@ -124,13 +117,11 @@ a {
   width: 100%;
   height: 100%;
   overflow: hidden;
-
   position: absolute;
 }
 video {
   grid-area: v ;
   background: #18181D;
-
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -151,8 +142,8 @@ video {
   text-align: left;
   color: white;
   padding: 10% 20% 0 1%;
-
 }
+
 #canvas {
   position: absolute;
   top: 0;

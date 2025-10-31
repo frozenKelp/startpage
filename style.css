@@ -10,6 +10,7 @@ body {
   font-family: 'Iosevka', monospace;
   background-color: #111;
   font-size: clamp(0.5rem, 1vw + 1vh, 3rem);
+  background: url('assets/silent-valley.png') center / cover no-repeat fixed;
 }
 
 .container {
@@ -161,12 +162,3 @@ video {
   padding: 10% 20% 0 1%;
 }
 
-#canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100dvw;
-  height: 100dvh;
-  z-index: -1;
-  pointer-events: none;
-}

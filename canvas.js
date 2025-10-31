@@ -1,61 +1,17 @@
 (() => {
-//Slideshow
-const total = 16;
-let index = 0; // set manually to your preferred starting video (0–15)
-let front = document.getElementById('vid_F');
-let back  = document.getElementById('vid_B');
-
-front.src = `assets/Side${index + 1}.mp4`;
-front.load();
-front.play();
-
-function swap() {
-  index = (index + 1) % total; // or replace with any logic you prefer
-  back.src = `assets/Side${index + 1}.mp4`;
-  back.load();
-  back.play();
-
-  back.className = 'front';
-  front.className = 'back';
-  [front, back] = [back, front];
-}
-front.addEventListener('click', swap);
-back.addEventListener('click', swap);
-
-//Clock
-function updateClock() {
-  const now = new Date();
-  const time = now.toLocaleTimeString('en-GB', {
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: false
-  });
-  const date = now.toLocaleDateString('en-GB', {
-    weekday: 'long',
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric'
-  });
-  document.getElementById('codes').textContent = `${time}  |  ${date}`;
-}
-
-updateClock();
-setInterval(updateClock, 1000);
-
 //Canvas
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 let particles = [];
 const opts = {
-  particleColor: "rgb(143, 143, 143)",
-  lineColor: "rgb(143, 143, 143)",
-  particleAmount: 50,
+  particleColor: "#ffffffff",
+  lineColor: "#ffffffff",
+  particleAmount: 100,
   defaultSpeed: 0.5,
-  variantSpeed: 0.5,
-  defaultRadius: 2,
-  variantRadius: 2,
-  linkRadius: 150,
+  variantSpeed: 1.2,
+  defaultRadius: 1,
+  variantRadius: 1.5,
+  linkRadius: 200,
 };
 
 //Spatial Hashing
@@ -150,4 +106,5 @@ const animate = () => {
 
 createParticles();
 animate();
+
 })();

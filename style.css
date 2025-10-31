@@ -2,17 +2,19 @@
   font-family: 'Iosevka';
   src: url('assets/IosevkaCurly-Regular.woff2') format('woff2');
 }
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
   height: 100dvh;
   margin: 0;
   font-family: 'Iosevka', monospace;
   background-color: #111;
-  font-size: clamp(0.5rem, 1.5vw + 1vh, 1.5rem);
+  font-size: clamp(0.5rem, 1vw + 1vh, 3rem);
 }
 
 .container {
   position:absolute;
+  overflow: hidden;
   top:50dvh;
   left:50dvw;
   transform: translate(-50%, -50%);
@@ -31,13 +33,28 @@ body {
   }
 }
 
+#X {
+  position: absolute;
+  height: 2%;
+  top: 0.5dvh;
+  left: 0.5dvh;
+  aspect-ratio: 1 / 1;
+  z-index: 3;
+  border: none;
+  border-radius: 50%;
+  background: no-repeat center/75% url(assets/LineMdClose.svg),radial-gradient(circle at center, #000000, #282828);
+}
+#X:hover {
+  background: no-repeat center/75% url(assets/LineMdClose.svg) , #ff5050aa;
+}
 .main {
   display: grid;
   grid-auto-rows: 1fr;
   grid-auto-columns: 1fr;
   text-align: center;
   background-color: #181818;
-  border: 5px solid #18181D;
+  border: 0.5dvh solid var(--containerBorderColor, #432f2f7d);
+  transition: border-color 600ms linear;
   height: 100%;
   width: 100%;
 
@@ -148,8 +165,8 @@ video {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100dvw;
+  height: 100dvh;
   z-index: -1;
   pointer-events: none;
 }

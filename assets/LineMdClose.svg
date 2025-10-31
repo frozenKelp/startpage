@@ -1,0 +1,11 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+  <path fill="none" stroke="#ffffffff" stroke-dasharray="12" stroke-dashoffset="12"
+        stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+        d="M12 12l7 7M12 12l-7 -7M12 12l-7 7M12 12l7 -7">
+    <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="12;0"/>
+    <animateTransform attributeName="transform" attributeType="XML"
+                      type="rotate" from="0 12 12" to="360 12 12"
+                      dur="20s" repeatCount="indefinite"/>
+  </path>
+</svg>

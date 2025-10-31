@@ -10,7 +10,7 @@ body {
   font-family: 'Iosevka', monospace;
   background-color: #111;
   font-size: clamp(0.5rem, 1vw + 1vh, 3rem);
-  background: url('assets/silent-valley.png') center / cover no-repeat fixed;
+  background: url('assets/silent-valley.webp') center / cover no-repeat fixed;
 }
 
 .container {
